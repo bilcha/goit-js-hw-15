@@ -10,22 +10,26 @@ const elements = {
   box: document.querySelector("#boxes")
 }
 
-function createMarkup(amount) {
+function createBoxes(amount) {
   let markup = "";
   for (let i = 0; i < amount; i += 1) {
     let styles = `background-color:${getRandomHexColor()};width:${30 + i * 10}px;height:${30 + i * 10}px`;
    markup += `<div style=${styles}></div>`
   }
-  return markup;
-}
-
-function addBoxes() {
- elements.box.innerHTML = createMarkup(elements.inputField.value);
+  elements.box.innerHTML = markup;
 }
 
 function destroyBoxes() {
   elements.box.innerHTML = "";
 }
 
-elements.createBtn.addEventListener("click", addBoxes);
-elements.destroyBtn.addEventListener("click", destroyBoxes);
+function onAddButtonClick() {
+  createBoxes(elements.inputField.value);
+}
+
+function onDestroyButtonClick(){
+  destroyBoxes();
+}
+
+elements.createBtn.addEventListener("click", onAddButtonClick);
+elements.destroyBtn.addEventListener("click", onDestroyButtonClick);
